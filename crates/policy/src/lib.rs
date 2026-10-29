@@ -59,7 +59,9 @@ pub fn validate_url_syntax(url: &Url, mode: AgentMode) -> Result<(), PolicyError
         return Err(PolicyError::UrlCredentials);
     }
 
-    let port = url.port_or_known_default().ok_or(PolicyError::DisallowedPort)?;
+    let port = url
+        .port_or_known_default()
+        .ok_or(PolicyError::DisallowedPort)?;
     let port_allowed = match mode {
         AgentMode::Public => matches!(port, 80 | 443),
         AgentMode::Private => matches!(port, 80 | 443),
@@ -126,10 +128,7 @@ pub fn validate_job(
     validate_request(&job.request, job.policy.mode)
 }
 
-pub fn validate_request(
-    request: &HttpRequestSpec,
-    mode: AgentMode,
-) -> Result<(), PolicyError> {
+pub fn validate_request(request: &HttpRequestSpec, mode: AgentMode) -> Result<(), PolicyError> {
     if !matches!(request.method.as_str(), "GET" | "HEAD") {
         return Err(PolicyError::UnsupportedMethod);
     }
@@ -150,11 +149,9 @@ mod tests {
 
     #[test]
     fn accepts_basic_public_https_url_syntax() {
-        assert!(validate_request(
-            &request("https://example.com/health"),
-            AgentMode::Public
-        )
-        .is_ok());
+        assert!(
+            validate_request(&request("https://example.com/health"), AgentMode::Public).is_ok()
+        );
     }
 
     #[test]
@@ -168,7 +165,10 @@ mod tests {
     #[test]
     fn rejects_url_credentials() {
         assert_eq!(
-            validate_request(&request("https://user:pass@example.com/"), AgentMode::Public),
+            validate_request(
+                &request("https://user:pass@example.com/"),
+                AgentMode::Public
+            ),
             Err(PolicyError::UrlCredentials)
         );
     }

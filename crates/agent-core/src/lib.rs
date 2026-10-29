@@ -9,6 +9,8 @@ pub struct AgentIdentity {
 
 impl AgentIdentity {
     pub fn new_for_local_development() -> Self {
-        Self { agent_id: Uuid::new_v4() }
+        Self {
+            agent_id: Uuid::new_v4(),
+        }
     }
 }

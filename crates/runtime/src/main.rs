@@ -1,12 +1,16 @@
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use monitor_agent_http_executor::validate_check;
-use monitor_agent_protocol::{AgentMode, HttpRequestSpec};
 use monitor_agent_policy::validate_url_syntax;
+use monitor_agent_protocol::{AgentMode, HttpRequestSpec};
 use url::Url;
 
 #[derive(Debug, Parser)]
-#[command(name = "monitor-agent", version, about = "Community Monitor Rust agent")]
+#[command(
+    name = "monitor-agent",
+    version,
+    about = "Community Monitor Rust agent"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Command,
