@@ -1,0 +1,12 @@
+[package]
+name = "monitor-agent-policy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+ipnet.workspace = true
+thiserror.workspace = true
+url.workspace = true
+monitor-agent-protocol = { path = "../protocol" }

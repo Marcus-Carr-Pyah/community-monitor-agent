@@ -1,0 +1,10 @@
+[package]
+name = "monitor-agent-http-executor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+monitor-agent-policy = { path = "../policy" }
+monitor-agent-protocol = { path = "../protocol" }

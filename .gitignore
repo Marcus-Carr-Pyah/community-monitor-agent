@@ -1,0 +1,17 @@
+# Rust
+/target
+**/*.rs.bk
+
+# Local config and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
